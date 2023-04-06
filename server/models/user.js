@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
+const { productSchema } = require("../models/product.js")
 
 const userSchema = mongoose.Schema({
-    name : {
+    name: {
         required: true,
-        type : String,
-        trim : true,
+        type: String,
+        trim: true,
     },
-    email : {
+    email: {
         required: true,
         type: String,
         trim: true,
@@ -18,7 +19,7 @@ const userSchema = mongoose.Schema({
             message: 'Please enter a valid email address',
         }
     },
-    password : {
+    password: {
         required: true,
         type: String,
     },
@@ -30,7 +31,15 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 'user',
     },
-    // cart
+    cart: [
+        {
+            product: productSchema,
+            quantity: {
+                type: Number,
+                required: true,
+            }
+        }
+    ]
 });
 
 const User = mongoose.model("User", userSchema);

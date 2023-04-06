@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 // IMPORTS FROM OTHER FILES
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
-const productRouter =require("./routes/product");
+const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
 
 // INIT
 const app = express();
@@ -17,12 +18,13 @@ app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 
 // connections
 mongoose.set('strictQuery', true);
 mongoose.connect(DB).then(() => {
     console.log('Connection Sucessful');
-}).catch((e)=> {
+}).catch((e) => {
     console.log(e);
 });
 

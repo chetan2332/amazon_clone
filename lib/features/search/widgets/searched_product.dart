@@ -11,6 +11,16 @@ class SearchedProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double avgRating = 0;
+    double totalRating = 0;
+    for (int i = 0; i < product.rating!.length; i++) {
+      totalRating += product.rating![i].rating;
+    }
+
+    if (totalRating != 0 && product.rating!.isNotEmpty) {
+      avgRating = totalRating / (product.rating!.length);
+    }
+
     final double width = MediaQuery.of(context).size.width * 0.56;
     return Column(
       children: [
@@ -42,8 +52,8 @@ class SearchedProduct extends StatelessWidget {
                   Container(
                     width: width,
                     padding: const EdgeInsets.only(left: 10, top: 5),
-                    child: const Stars(
-                      rating: 3,
+                    child: Stars(
+                      rating: avgRating,
                     ),
                   ),
                   Container(

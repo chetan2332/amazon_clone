@@ -15,11 +15,11 @@ class ProductDetailServices {
   void rateProduct(
       {required BuildContext context,
       required Product product,
-      required String rating}) async {
+      required double rating}) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
       http.Response res = await http.post(
-        Uri.parse('$uri/api/rate-prooduct'),
+        Uri.parse('$uri/api/rate-product/'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
@@ -30,7 +30,11 @@ class ProductDetailServices {
         }),
       );
 
-      httpErrorHandle(response: res, context: context, onSuccess: () {});
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {},
+      );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
