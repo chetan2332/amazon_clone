@@ -11,7 +11,7 @@ const userRouter = require("./routes/user");
 // INIT
 const app = express();
 const PORT = 3000;
-const DB = "mongodb+srv://chetan:chetan233257@cluster0.wikics7.mongodb.net/?retryWrites=true&w=majority";
+const DB = "mongodb+srv://<username>:<password>@cluster0.wikics7.mongodb.net/?retryWrites=true&w=majority";
 
 // middlewares
 app.use(express.json());
